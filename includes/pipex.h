@@ -6,7 +6,7 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:30:31 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/24 19:11:01 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/24 19:34:56 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_data
 {
 	pid_t	id1;
 	pid_t	id2;
-	int		pipe_fd[2];
+	int		p_fd[2];
 }	t_data;
 
 char **get_path(char **envp);

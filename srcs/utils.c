@@ -6,7 +6,7 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:48:16 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/24 15:03:46 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/24 20:02:29 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ char **get_path(char **envp)
 	}
 	if (paths == NULL)
 	{
-		perror("Error: PATH not found in environment variables");
-		exit(EXIT_FAILURE);
+		perror("path retrieval failure!");
+		exit(EXIT_FAILURE); // tbd: exit handler
 	}
 	return (paths);
 }
