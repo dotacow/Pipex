@@ -6,7 +6,7 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:48:16 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/25 12:17:27 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:36:32 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,19 @@ char **get_path(char **envp)
 	return (paths);
 }
 
-int	ft_execve(char *cmd, char **paths, char **envp)
+int	ft_execve(char *cmd, char **envp)
 {
 	int		i;
 	char	*path;
 	char	**args;
+	char	**paths;
 
+	paths == get_path(envp);
+	if (!paths)
+	{
+		perror("path retriveal failure");
+		exit (EXIT_FAILURE); // tbd
+	}
 	args = ft_split(cmd, ' ');
 	if (!args)
 	{
