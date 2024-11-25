@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yokitane <yokitane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:48:16 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/25 09:28:11 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:17:27 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,13 @@ int	ft_execve(char *cmd, char **paths, char **envp)
 			perror("path join failure!");
 			exit(EXIT_FAILURE); // tbd: exit handler
 		}
-		if (execve(path, args, envp) == -1)
-			i++;
+		if (access(path,X_OK))
+			execve(path, args, envp);
+		i++;
 	}
 	perror("pipex: cmd not found!");
-	exit(EXIT_FAILURE); // tbd: exit handler, return --1 free args, path, paths, close fd in main
-
+	free (path);
+	free (cmd);
+	ft_2d_free (args);
+	return (-1);
 }

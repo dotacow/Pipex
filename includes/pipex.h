@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yokitane <yokitane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:30:31 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/25 09:26:40 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:05:33 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_data
 	int		p_fd[2];
 }	t_data;
 
-char **get_path(char **envp);
-int	ft_execve(char *cmd, char **paths, char **envp);
+char	**get_path(char **envp);
+int		ft_execve(char *cmd, char **paths, char **envp);
 
 #endif
