@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -I includes
 LIBDIR = libft
 LIB = $(LIBDIR)/libft.a
 
-SRC = pipex.c
+SRC = pipex.c utils.c
 
 SRCS :=  $(addprefix srcs/,$(SRC))
 OFILES := $(addprefix ofiles/,$(SRC:.c=.o))
