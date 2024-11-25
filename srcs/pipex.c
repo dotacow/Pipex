@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: yokitane <yokitane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:55:32 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/24 20:54:32 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/25 08:58:44 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
 static int	write_to_pipe(char **argv,char **envp,t_data data)
-	// close p_fd[2]
+	// close p_fd[1]
 	// opens fd of argv[1] dups it to stdin;
 		// protect open and dup
 	// dup stdout to p_fd[1]
 		// protect dup
-	// executes argv[2], takes env from main
-		// handle execute fail
-	// close p_fd[1], fd free env
+	// executes argv[2] in each path till success
+	// if we reach the end of paths, perror("cmd1 not found");
+	// close p_fd[1], fd , free paths
 {
 }
 
