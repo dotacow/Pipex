@@ -6,18 +6,19 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:55:32 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/26 14:10:41 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/26 18:44:14 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
 static int	write_to_pipe(char **argv,char **envp,t_data *data1)
+// protectioooooooooooooons!!!!!!!!!1
 {
 	int	fd;
-	t_data data = *data1;
+	t_data data;
 
-	fprintf(stderr, "hi from first child");
+	data = *data1;
 	close(data.p_fd[0]);
 	if (access(argv[1], R_OK) == -1)
 	{
@@ -25,37 +26,28 @@ static int	write_to_pipe(char **argv,char **envp,t_data *data1)
 		exit(EXIT_FAILURE);
 	}
 	fd = open(argv[1],O_RDONLY);
-	if (fd < 0)
-		exit(EXIT_FAILURE); // tbd : exit handler
-	if (dup2(fd, 0) == -1)
-		exit(EXIT_FAILURE); // tbd
-	if (dup2(data.p_fd[1],1))
-		exit(EXIT_FAILURE); // tbd
-	close(data.p_fd[1]);
+	dup2(fd, STDIN_FILENO);
 	close(fd);
+	dup2(data.p_fd[1], STDOUT_FILENO);
+	close(data.p_fd[1]);
 	ft_execve(argv[2],envp);
-	exit(EXIT_FAILURE); // tbd
+	return(-1);
 }
 
 static int read_from_pipe(char **argv, char **envp, t_data *data1)
+// protectioooooooooooooons!!!!!!!!!1
 {
 	int	fd;
 	t_data data = *data1;
-	// printf("exec from second child");
 
 	close(data.p_fd[1]);
 	fd = open(argv[4], O_WRONLY | O_CREAT, 00400 | 00200);
-	if (fd < 0)
-		exit(EXIT_FAILURE);
-	if (dup2(fd, 1) == -1)
-		exit(EXIT_FAILURE);
-	if (dup2(data.p_fd[0], 0) == -1)
-		exit(EXIT_FAILURE);
-	fprintf(stderr, "exec from second child");
-	close(data.p_fd[0]);
+	dup2(fd,STDOUT_FILENO);
 	close(fd);
+	dup2(data.p_fd[0],STDIN_FILENO);
+	close(data.p_fd[0]);
 	ft_execve(argv[3], envp);
-	exit(EXIT_FAILURE);
+	return(-1);
 }
 // potential bonus: fork in write/read pipe, allowing to use multiple pipes
 int		main(int argc, char **argv, char **envp)

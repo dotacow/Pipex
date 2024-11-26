@@ -6,7 +6,7 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:30:31 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/25 15:40:24 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/26 18:45:47 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_data
 	int		p_fd[2];
 }	t_data;
 
-char	**get_path(char **envp);
+char	*get_path(char **envp, char *cmd);
 int		ft_execve(char *cmd, char **envp);
 
 #endif
