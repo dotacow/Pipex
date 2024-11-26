@@ -6,7 +6,7 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:48:16 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/26 19:07:40 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/26 19:11:37 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int	ft_execve(char *cmd, char **envp)
 
 	args = ft_split(cmd,' ');
 	if (!args)
+		return (-1);
+	if (*cmd == 0)
 		return (-1);
 	cmd = get_path(envp, args[0]);
 	if (!cmd)
