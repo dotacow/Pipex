@@ -6,7 +6,7 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:48:16 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/26 18:45:36 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/26 19:07:40 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char *get_path(char **envp,char *cmd)
 	int		i;
 	char	**paths;
 	char	*joined_cmd;
+	char	*tmp;
 
 	i = 0;
 	paths = NULL;
@@ -48,10 +49,13 @@ char *get_path(char **envp,char *cmd)
 	i = 0;
 	while (paths[i])
 	{
-		cmd = ft_strjoin(paths[i],cmd);
-		if (!access(joined_cmd,X_OK))
+		tmp = ft_strjoin(paths[i],cmd);
+		fprintf(stderr,"%s\n",tmp);
+		if (!cmd)
+			return (NULL);
+		if (!access(tmp,X_OK))
 		{
-			joined_cmd = cmd;
+			joined_cmd = tmp;
 			break;
 		}
 		i++;
@@ -70,6 +74,8 @@ int	ft_execve(char *cmd, char **envp)
 	cmd = get_path(envp, args[0]);
 	if (!cmd)
 		return (-1);
+	fprintf(stderr, "%s\n", cmd);
+	fprintf(stderr, "%s\n", args[0]);
 	execve(cmd,args,envp);
 	return (-1);
 
