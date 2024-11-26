@@ -6,12 +6,19 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:48:16 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/26 19:11:37 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/26 21:10:54 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
+void	exit_handler(t_data *data)
+{
+	while (wait(NULL));
+	close(data->p_fd[0]);
+	close(data->p_fd[1]);
+	exit(EXIT_FAILURE);
+}
 static void	ft_2d_free (char **args)
 {
 	int	i;
@@ -79,6 +86,8 @@ int	ft_execve(char *cmd, char **envp)
 	fprintf(stderr, "%s\n", cmd);
 	fprintf(stderr, "%s\n", args[0]);
 	execve(cmd,args,envp);
+	ft_2d_free(args);
+	free(cmd);
 	return (-1);
 
 }
