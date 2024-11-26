@@ -3,33 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yokitane <yokitane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:55:32 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/25 21:04:41 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:10:41 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-// close p_fd[0]
-// access(argv[1], R_OK)
-	// if failure
-	// terminate child.
-// open fd of argv[1] | read
-	// protect
-// link fd to stdin
-	// protect
-// link p_fd[1] to stdout
-	// protect
-// ft_execve()
-	// close p_fd, fd, free paths
-	// throw error
 static int	write_to_pipe(char **argv,char **envp,t_data *data1)
 {
 	int	fd;
 	t_data data = *data1;
 
+	fprintf(stderr, "hi from first child");
 	close(data.p_fd[0]);
 	if (access(argv[1], R_OK) == -1)
 	{
@@ -43,42 +31,30 @@ static int	write_to_pipe(char **argv,char **envp,t_data *data1)
 		exit(EXIT_FAILURE); // tbd
 	if (dup2(data.p_fd[1],1))
 		exit(EXIT_FAILURE); // tbd
-	ft_execve(argv[2],envp);
 	close(data.p_fd[1]);
 	close(fd);
+	ft_execve(argv[2],envp);
 	exit(EXIT_FAILURE); // tbd
 }
-// close p_fd[1]
-// access(argv[2], W_OK)
-	// if failure
-	// terminate child.
-// open fd of argv[4] | create | write
-	// protect
-// lint p_fd[0] to stdin
-	// protect
-// link fd to stdout
-	// protect
-// ft_execve()
-	// close p_fd, fd, free paths
-	// throw error
+
 static int read_from_pipe(char **argv, char **envp, t_data *data1)
 {
 	int	fd;
 	t_data data = *data1;
+	// printf("exec from second child");
 
 	close(data.p_fd[1]);
-	if (access(argv[4],W_OK) == -1)
-		exit(EXIT_FAILURE);
-	fd = open(argv[4], O_WRONLY |O_CREAT);
+	fd = open(argv[4], O_WRONLY | O_CREAT, 00400 | 00200);
 	if (fd < 0)
 		exit(EXIT_FAILURE);
 	if (dup2(fd, 1) == -1)
 		exit(EXIT_FAILURE);
 	if (dup2(data.p_fd[0], 0) == -1)
 		exit(EXIT_FAILURE);
-	ft_execve(argv[3], envp);
+	fprintf(stderr, "exec from second child");
 	close(data.p_fd[0]);
 	close(fd);
+	ft_execve(argv[3], envp);
 	exit(EXIT_FAILURE);
 }
 // potential bonus: fork in write/read pipe, allowing to use multiple pipes
@@ -106,6 +82,8 @@ int		main(int argc, char **argv, char **envp)
 		if (data.id2 == 0)
 			read_from_pipe(argv, envp, &data);//build later, protect?
 	}
+	close(data.p_fd[0]);
+	close(data.p_fd[1]);
 	while (wait(NULL) != -1);
 	return (0);
 }
