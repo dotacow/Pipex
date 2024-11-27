@@ -6,7 +6,7 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:48:16 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/27 17:38:03 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:49:22 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ void	exit_handler(t_data *data)
 	exit(EXIT_FAILURE);
 }
 
-
-static void get_env(char **cmd, char ***paths, char **envp)
+static void	get_env(char **cmd, char ***paths, char **envp)
 {
 	int	i;
 
@@ -51,13 +50,13 @@ static void get_env(char **cmd, char ***paths, char **envp)
 			*paths = ft_split(envp[i] + 5, ':');
 			if (!*paths)
 				exit(EXIT_FAILURE);
-			break;
+			break ;
 		}
 		i++;
 	}
 }
 
-char *get_path(char **envp,char *cmd)
+char	*get_path(char **envp, char *cmd)
 {
 	int		i;
 	char	**paths;
@@ -70,13 +69,13 @@ char *get_path(char **envp,char *cmd)
 	i = 0;
 	while (paths[i])
 	{
-		tmp = ft_strjoin(paths[i],cmd);
+		tmp = ft_strjoin(paths[i], cmd);
 		if (!cmd)
 			return (NULL);
-		if (!access(tmp,X_OK))
+		if (!access(tmp, X_OK))
 		{
 			joined_cmd = tmp;
-			break;
+			break ;
 		}
 		i++;
 	}
@@ -84,11 +83,11 @@ char *get_path(char **envp,char *cmd)
 	return (joined_cmd);
 }
 
-int	ft_execve(char *cmd, char **envp)
+int	ft_execve(int fd, char *cmd, char **envp)
 {
 	char	**args;
 
-	args = ft_split(cmd,' ');
+	args = ft_split(cmd, ' ');
 	if (!args)
 		return (-1);
 	if (*cmd == 0)
@@ -96,9 +95,10 @@ int	ft_execve(char *cmd, char **envp)
 	cmd = get_path(envp, args[0]);
 	if (!cmd)
 		return (-1);
-	fprintf(stderr,"%s\n",cmd);
-	execve(cmd,args,envp);
+	// fprintf(stderr,"%s\n",cmd);
+	execve(cmd, args, envp);
 	ft_2d_free(args);
 	free(cmd);
+	close (fd);
 	return (-1);
 }

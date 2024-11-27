@@ -1,6 +1,8 @@
-  83  207 2292
-Makefile
-ofiles
-outfile
-pipex
-srcs
+drwxr-xr-x 2 yokitane 2024_42campus    21 Nov 25 11:40 includes
+drwxr-xr-x 2 yokitane 2024_42campus    36 Nov 26 16:57 srcs
+drwxr-xr-x 2 yokitane 2024_42campus    36 Nov 27 17:56 ofiles
+drwxr-xr-x 2 yokitane 2024_42campus  4096 Nov 27 17:40 libft
+-rw------- 1 yokitane 2024_42campus    50 Nov 27 18:02 outfile
+-rw-r--r-- 1 yokitane 2024_42campus   562 Nov 26 20:01 Makefile
+-rwxr-xr-x 1 yokitane 2024_42campus 17296 Nov 27 17:56 pipex
+total 32
