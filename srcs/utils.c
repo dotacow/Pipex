@@ -6,7 +6,7 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:48:16 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/28 19:34:51 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/28 20:13:33 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,19 @@ static int	get_env(char **cmd, char ***paths, char **envp)
 	if (!*cmd)
 		return (0);
 	i = 0;
+	*paths = NULL;
 	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 		{
 			*paths = ft_split(envp[i] + 5, ':');
+			return (1);
 			if (!*paths)
 				return (0);
-			break ;
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 char	*get_path(char **envp, char *cmd, int i)
@@ -63,7 +64,8 @@ char	*get_path(char **envp, char *cmd, int i)
 
 	paths = NULL;
 	joined_cmd = NULL;
-	if (get_env(&cmd, &paths, envp))
+
+	if (!get_env(&cmd, &paths, envp))
 		return (NULL);
 	while (paths[i])
 	{
@@ -78,7 +80,6 @@ char	*get_path(char **envp, char *cmd, int i)
 		free(tmp);
 		i++;
 	}
-	free(tmp);
 	ft_2d_free(paths);
 	return (joined_cmd);
 }
