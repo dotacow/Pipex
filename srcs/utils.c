@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: dotacow <dotacow@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:48:16 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/28 20:37:32 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/28 22:39:01 by dotacow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static int	get_env(char **cmd, char ***paths, char **envp)
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 		{
 			*paths = ft_split(envp[i] + 5, ':');
-			return (1);
 			if (!*paths)
 				return (0);
+			return (1);
 		}
 		i++;
 	}

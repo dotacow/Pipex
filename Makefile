@@ -13,12 +13,12 @@ NAME = pipex
 
 
 
-ofiles/%.o: srcs/%.c | dirs
+ofiles/%.o: srcs/%.c includes/pipex.h | dirs
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
-$(NAME): $(OFILES) | $(LIB)
+$(NAME): $(OFILES) $(LIB)
 	$(CC) $(OFILES) -L$(LIBDIR) -lft -o $(NAME)
 
 $(LIB):
@@ -30,7 +30,7 @@ clean:
 
 fclean: clean
 	make fclean -C $(LIBDIR)
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 
