@@ -6,7 +6,7 @@
 /*   By: dotacow <dotacow@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:48:16 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/28 22:39:01 by dotacow          ###   ########.fr       */
+/*   Updated: 2024/11/28 23:36:23 by dotacow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ char	*get_path(char **envp, char *cmd, int i)
 
 	paths = NULL;
 	joined_cmd = NULL;
-
 	if (!get_env(&cmd, &paths, envp))
 		return (NULL);
 	while (paths[i])
@@ -80,6 +79,7 @@ char	*get_path(char **envp, char *cmd, int i)
 		free(tmp);
 		i++;
 	}
+	free(cmd);
 	ft_2d_free(paths);
 	return (joined_cmd);
 }
@@ -105,6 +105,7 @@ void	ft_execve(int fd, char *cmd, char **envp)
 		exit_handler(fd);
 	}
 	execve(cmd, args, envp);
+	free(args[0]);
 	ft_2d_free(args);
 	exit_handler(fd);
 }
