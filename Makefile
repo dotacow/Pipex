@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I includes
+CFLAGS = -Wall -Wextra -Werror -g -I includes
 
 LIBDIR = libft
 LIB = $(LIBDIR)/libft.a
