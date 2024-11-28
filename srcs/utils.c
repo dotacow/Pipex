@@ -6,7 +6,7 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:48:16 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/28 20:13:33 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/28 20:37:32 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void	ft_execve(int fd, char *cmd, char **envp)
 		exit_handler(fd);
 	if (*cmd == 0)
 	{
-		free(cmd);
 		ft_2d_free(args);
 		exit_handler(fd);
 	}
@@ -107,6 +106,5 @@ void	ft_execve(int fd, char *cmd, char **envp)
 	}
 	execve(cmd, args, envp);
 	ft_2d_free(args);
-	free(cmd);
 	exit_handler(fd);
 }
