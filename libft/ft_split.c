@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yokitane <yokitane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dotacow <dotacow@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 16:28:24 by yokitane          #+#    #+#             */
-/*   Updated: 2024/10/28 17:20:04 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/29 10:44:51 by dotacow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ char	**ft_split(char const *s, char c)
 	char	**words;
 
 	count = ft_count_words(s, c);
+	if (!count)
+		return (NULL);
 	words = ft_calloc(count + 1, sizeof(char *));
 	if (!s || !words)
 	{
