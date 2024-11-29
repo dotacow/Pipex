@@ -6,7 +6,7 @@
 /*   By: dotacow <dotacow@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:48:16 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/29 10:43:27 by dotacow          ###   ########.fr       */
+/*   Updated: 2024/11/29 11:14:39 by dotacow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void	ft_execve(int fd, char *cmd, char **envp)
 		exit_handler(fd);
 	}
 	execve(cmd, args, envp);
-	free(args[0]);
 	ft_2d_free(args);
 	exit_handler(fd);
 }
