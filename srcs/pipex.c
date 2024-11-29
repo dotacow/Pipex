@@ -6,7 +6,7 @@
 /*   By: dotacow <dotacow@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:55:32 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/29 14:52:15 by dotacow          ###   ########.fr       */
+/*   Updated: 2024/11/29 15:16:06 by dotacow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 5)
 		exit_handler(-1);
 	if (pipe(data.p_fd) == -1)
-		exit_pipe(&data);
+		exit_handler(-1);
 	data.id1 = fork();
 	if (errno)
 		exit_pipe(&data);
