@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: dotacow <dotacow@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:55:32 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/28 19:31:42 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/29 14:52:15 by dotacow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	main(int argc, char **argv, char **envp)
 	t_data	data;
 
 	if (argc != 5)
-		exit_pipe(&data);
+		exit_handler(-1);
 	if (pipe(data.p_fd) == -1)
 		exit_pipe(&data);
 	data.id1 = fork();

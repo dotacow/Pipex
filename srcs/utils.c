@@ -6,7 +6,7 @@
 /*   By: dotacow <dotacow@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:48:16 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/29 11:14:39 by dotacow          ###   ########.fr       */
+/*   Updated: 2024/11/29 14:52:32 by dotacow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	ft_2d_free(char **args)
 void	exit_handler(int fd)
 {
 	perror("ya nashmi! reconsider your life choices (╯°□°）╯︵ ┻━┻.\n");
-	if (fd < 0)
+	if (fd > 0)
 		close (fd);
 	exit(EXIT_FAILURE);
 }
