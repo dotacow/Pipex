@@ -6,7 +6,7 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:55:32 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/30 16:17:42 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:18:49 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static void	read_from_pipe(char **argv, char **envp, t_data *data)
 	exit_handler(-1);
 }
 
-// potential bonus: fork in write/read pipe, allowing to use multiple pipes
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
