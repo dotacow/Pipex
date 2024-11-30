@@ -6,7 +6,7 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:55:32 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/30 16:18:49 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/11/30 18:01:40 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,15 @@ static void	read_from_pipe(char **argv, char **envp, t_data *data)
 	close(data->p_fd[1]);
 	fd = open(argv[4], O_WRONLY | O_CREAT, 00400 | 00200);
 	if (fd < 0)
-		exit_handler(data->p_fd[2]);
+		exit_handler(data->p_fd[0]);
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
 	if (errno)
-		exit_handler(data->p_fd[2]);
+		exit_handler(data->p_fd[0]);
 	dup2(data->p_fd[0], STDIN_FILENO);
 	close(data->p_fd[0]);
 	if (errno)
-		exit_handler(data->p_fd[2]);
+		exit_handler(data->p_fd[0]);
 	ft_execve(fd, argv[3], envp);
 	exit_handler(-1);
 }
