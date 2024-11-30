@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dotacow <dotacow@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:55:32 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/29 15:16:06 by dotacow          ###   ########.fr       */
+/*   Updated: 2024/11/30 16:17:42 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-static void exit_pipe(t_data *data)
+static void	exit_pipe(t_data *data)
 {
 	if (data->p_fd[0] > 0)
 		close(data->p_fd[0]);
@@ -21,6 +21,7 @@ static void exit_pipe(t_data *data)
 	perror("ya nashmi! reconsider your life choices (╯°□°）╯︵ ┻━┻.\n");
 	exit(EXIT_FAILURE);
 }
+
 static void	write_to_pipe(char **argv, char **envp, t_data *data)
 {
 	int	fd;
@@ -88,6 +89,6 @@ int	main(int argc, char **argv, char **envp)
 	}
 	close(data.p_fd[0]);
 	close(data.p_fd[1]);
-	while (wait(NULL) > 0);
+	wait(NULL);
 	return (0);
 }
