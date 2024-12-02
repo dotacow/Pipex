@@ -6,7 +6,7 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:55:32 by yokitane          #+#    #+#             */
-/*   Updated: 2024/12/02 17:29:41 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/12/02 17:33:01 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ static void	read_from_pipe(char **argv, char **envp, t_data *data)
 	int	fd;
 
 	close(data->p_fd[1]);
-	if (access(argv[4], W_OK) == -1)
-		exit_handler(data->p_fd[0]);
 	fd = open(argv[4], O_WRONLY | O_CREAT, 00400 | 00200);
 	if (fd < 0)
 		exit_handler(data->p_fd[0]);
