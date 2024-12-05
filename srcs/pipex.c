@@ -6,7 +6,7 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:55:32 by yokitane          #+#    #+#             */
-/*   Updated: 2024/12/02 17:33:01 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/12/05 23:15:51 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	read_from_pipe(char **argv, char **envp, t_data *data)
 	int	fd;
 
 	close(data->p_fd[1]);
-	fd = open(argv[4], O_WRONLY | O_CREAT, 00400 | 00200);
+	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 00400 | 00200);
 	if (fd < 0)
 		exit_handler(data->p_fd[0]);
 	dup2(fd, STDOUT_FILENO);
@@ -79,7 +79,6 @@ int	main(int argc, char **argv, char **envp)
 		write_to_pipe(argv, envp, &data);
 	if (data.id1)
 	{
-		wait(NULL);
 		data.id2 = fork();
 		if (errno)
 			exit_pipe(&data);
@@ -88,6 +87,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	close(data.p_fd[0]);
 	close(data.p_fd[1]);
+	wait(NULL);
 	wait(NULL);
 	return (0);
 }
