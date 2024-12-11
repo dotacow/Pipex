@@ -6,7 +6,7 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:48:16 by yokitane          #+#    #+#             */
-/*   Updated: 2024/11/30 16:22:59 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/12/08 18:15:22 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ char	*get_path(char **envp, char *cmd, int i)
 
 	paths = NULL;
 	joined_cmd = NULL;
-	if (!get_env(&cmd, &paths, envp))
+	if (!get_env(&cmd, &paths, envp))// ls --> /ls
 		return (NULL);
 	while (paths[i])
 	{
-		tmp = ft_strjoin(paths[i], cmd);
+		tmp = ft_strjoin(paths[i], cmd);// usr/bin/ls
 		if (!tmp)
 			return (NULL);
 		if (!access(tmp, X_OK))

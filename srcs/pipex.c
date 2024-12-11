@@ -6,7 +6,7 @@
 /*   By: yokitane <yokitane@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:55:32 by yokitane          #+#    #+#             */
-/*   Updated: 2024/12/05 23:15:51 by yokitane         ###   ########.fr       */
+/*   Updated: 2024/12/08 18:10:13 by yokitane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	main(int argc, char **argv, char **envp)
 		exit_handler(-1);
 	if (pipe(data.p_fd) == -1)
 		exit_handler(-1);
-	data.id1 = fork();
+	data.id1 = fork();//
 	if (errno)
 		exit_pipe(&data);
 	if (!data.id1)
